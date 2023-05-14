@@ -21,3 +21,10 @@ export const getUserByIdFromDb = async (
   const user = await User.findOne({ id: payload }, { name: 1 });
   return user;
 };
+
+export const getAdminUserFromDb = async () => {
+  const admins = await User.getAdminUsers();
+  console.log(admins);
+
+  return admins;
+};

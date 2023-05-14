@@ -1,7 +1,7 @@
 import { Model, Schema, model } from "mongoose";
-import { IUser, IUserMethods } from "./user.interface";
+import { IUser, IUserMethods, UserModel } from "./user.interface";
 
-type UserModel = Model<IUser, {}, IUserMethods>;
+// type UserModel = Model<IUser, {}, IUserMethods>;
 
 // creating schema using interface
 const userSchema = new Schema<IUser, UserModel, IUserMethods>({
@@ -51,6 +51,13 @@ const userSchema = new Schema<IUser, UserModel, IUserMethods>({
   },
 });
 
+// static method
+userSchema.static("getAdminUsers", async function getAdminUsers() {
+  const admins = await this.find({ role: "student" });
+  return admins;
+});
+
+// instance custom method
 userSchema.method("fullName", function fullName() {
   return this.name.firstName + " " + this.name.lastName;
 });

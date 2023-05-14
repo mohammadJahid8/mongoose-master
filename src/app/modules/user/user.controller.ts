@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 
 import {
   createUserToDb,
+  getAdminUserFromDb,
   getUserByIdFromDb,
   getUsersFromDb,
 } from "./user.service";
@@ -45,5 +46,15 @@ export const getUserById = async (req: Request, res: Response) => {
   res.status(200).json({
     message: "succes",
     data: getUser,
+  });
+};
+export const getAdminUsers = async (req: Request, res: Response) => {
+  const getAdmins = await getAdminUserFromDb();
+
+  console.log(getAdmins);
+
+  res.status(200).json({
+    message: "succes",
+    data: getAdmins,
   });
 };

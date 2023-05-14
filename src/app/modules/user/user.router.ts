@@ -1,9 +1,15 @@
 import express from "express";
-import { getUserById, getUsers, saveUserController } from "./user.controller";
+import {
+  getAdminUsers,
+  getUserById,
+  getUsers,
+  saveUserController,
+} from "./user.controller";
 const router = express.Router();
 
 router.get("/", getUsers);
+router.get("/getbyid/:id", getUserById);
+router.get("/admins", getAdminUsers);
 router.post("/create-user", saveUserController);
-router.get("/:id", getUserById);
 
 export default router;
