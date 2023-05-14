@@ -14,3 +14,7 @@ export interface IUser {
   contactNo?: string;
   address?: string;
 }
+
+export interface IUserMethods {
+  fullName(): string;
+}

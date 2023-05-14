@@ -1,6 +1,10 @@
 import { Request, Response } from "express";
 
-import { createUserToDb, getUsersFromDb } from "./user.service";
+import {
+  createUserToDb,
+  getUserByIdFromDb,
+  getUsersFromDb,
+} from "./user.service";
 
 export const saveUserController = async (req: Request, res: Response) => {
   try {
@@ -32,4 +36,14 @@ export const getUsers = async (req: Request, res: Response) => {
       error: err.message,
     });
   }
+};
+
+export const getUserById = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const getUser = await getUserByIdFromDb(id);
+
+  res.status(200).json({
+    message: "succes",
+    data: getUser,
+  });
 };
