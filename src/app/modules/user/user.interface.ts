@@ -21,11 +21,6 @@ export interface IUserMethods {
   fullName(): string;
 }
 
-//
-// export interface UserModel extends Model<IUser> {
-//   getAdminUser(): IUser[];
-// }
-
 export interface UserModel extends Model<IUser, {}, IUserMethods> {
   getAdminUsers(): Promise<HydratedDocument<IUser, IUserMethods>>;
 }
